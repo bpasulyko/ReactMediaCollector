@@ -1,0 +1,29 @@
+body {
+    margin:0;
+    width:100%;
+    color:red;
+}
+
+header {
+    background:blue;
+
+    span {
+        color:red;
+    }
+}
+
+main {
+    background: green;
+
+    span {
+        color:#AAA;
+    }
+}
+
+footer {
+    background:red;
+
+    span {
+        color:black;
+    }
+}
