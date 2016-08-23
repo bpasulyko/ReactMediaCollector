@@ -1,4 +1,9 @@
-import content from './content';
+import $ from 'jquery';
+import Test from './content';
+
 import "../scss/style.scss";
 
-document.write(`<h1>${content}</h1>`);
+$(document).ready(() => {
+    var thing = new Test({ text: 'thing1' });
+    console.log(thing.get());
+});
