@@ -4,7 +4,7 @@ export default {
     entry: [
         "webpack/hot/dev-server",
         "webpack-hot-middleware/client",
-        "./public/js/entry.js"
+        "./public/js/entry"
     ],
     output: {
         path: __dirname,
@@ -12,12 +12,15 @@ export default {
     },
     module: {
         loaders: [{
-            test: /\.js$/,
-            loaders: ['babel-loader?cacheDirectory'],
+            test: /\.jsx?$/,
+            loaders: ['babel?cacheDirectory'],
             exclude: /node_modules/
         }, {
             test: /\.scss$/,
             loaders: ["style", "css", "sass"]
+        }, {
+            test: /\.html$/,
+            loader: 'file?name=[name].html'
         }]
     },
     plugins: [
@@ -25,6 +28,12 @@ export default {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
     ],
+    resolve: {
+        modulesDirectories: [
+            'node_modules',
+        ],
+        extensions: ['', '.js', '.jsx']
+    },
     progress: true,
     watch: true
 }
