@@ -1,6 +1,6 @@
-var webpack = require('webpack');
+import webpack from 'webpack';
 
-module.exports = {
+export default {
     entry: [
         "webpack/hot/dev-server",
         "webpack-hot-middleware/client",
