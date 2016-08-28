@@ -18,9 +18,6 @@ export default {
         }, {
             test: /\.scss$/,
             loaders: ["style", "css", "sass"]
-        }, {
-            test: /\.html$/,
-            loader: 'file?name=[name].html'
         }]
     },
     plugins: [
