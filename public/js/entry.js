@@ -1,26 +1,22 @@
 import $ from 'jquery';
 import _ from 'lodash';
 import Promise from 'bluebird';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import darkBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Test from './content';
 
 import "../scss/style.scss";
 
+injectTapEventPlugin();
+
 const target = document.getElementById('root');
-render(<Test thing='Test prop'/>, target);
-
-$(document).ready(() => {
-    var arr = [1,2,3,4,5];
-    $('main').append(_.map(arr, function (n) { return n*2; }));
-
-    promiseTest().then(displayResult);
-});
-
-function promiseTest() {
-  return Promise.resolve('blah');
-}
-
-function displayResult(result) {
-    $('main').append(result);
-}
+const App = () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Test thing="props" />
+  </MuiThemeProvider>
+);
+ReactDOM.render(<App />, target);

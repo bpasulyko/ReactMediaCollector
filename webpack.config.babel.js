@@ -13,7 +13,7 @@ export default {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            loaders: ['babel?cacheDirectory'],
+            loaders: ['react-hot-loader/webpack', 'babel?cacheDirectory'],
             exclude: /node_modules/
         }, {
             test: /\.scss$/,
