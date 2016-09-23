@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import {red900, red100} from 'material-ui/styles/colors';
+import {red900} from 'material-ui/styles/colors';
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -16,16 +16,21 @@ export default class NavBar extends Component {
     handleClose = () => this.setState({open: false});
 
     render() {
+        var addButton = <FlatButton
+            label="Add"
+            onClick={this.props.addButtonClick}
+        />
         var appBar = <AppBar
             title="Media Collector"
             onLeftIconButtonTouchTap={this.handleToggle}
-            iconElementRight={<FlatButton label="Add" />}
+            iconElementRight={addButton}
             style={{
                 backgroundColor: red900
             }}
             titleStyle={{
                 width:'150px'
-            }} />;
+            }}
+        />;
 
         var itemComponents = ['Home', 'Movies', 'TV Shows'].map((item, index) =>
             <MenuItem
