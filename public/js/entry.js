@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import darkBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import NavBar from '../components/NavBar';
 
 import "../scss/style.scss";
 
