@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import {red900, red600} from 'material-ui/styles/colors';
+import SearchInput from './SearchInput';
+import SearchResults from './SearchResults';
 
 export default class AddNewModal extends Component {
     constructor(props) {
@@ -10,58 +10,24 @@ export default class AddNewModal extends Component {
         this.state = { title: '' }
     }
 
-    setTitle = (title) => () => {
-        this.props.onSubmitModal(title);
-    }
-
-    handleOnChange = (e) => {
-        this.setState({ title:e.target.value });
-    }
-
     render() {
-        const actions = [
-            <RaisedButton
-                label="Submit"
-                keyboardFocused={true}
-                backgroundColor={red600}
-                labelColor='white'
-                style={{
-                    marginRight:'10px'
-                }}
-                onTouchTap={this.setTitle(this.state.title)}
-            />,
-            <RaisedButton
-                label="Cancel"
-                onTouchTap={this.props.onToggleModal}
-                backgroundColor={red600}
-                labelColor='white'
-            />,
-        ];
-
-        const searchBox = <TextField
-            fullWidth={true}
-            floatingLabelText='Search'
-            onChange={this.handleOnChange}
-            inputStyle={{
-                color:'white'
-            }}
-            floatingLabelFocusStyle={{
-                color:'white'
-            }}
-            underlineFocusStyle={{
-                borderColor:'white'
-            }}
-        />
+        var dialogContent = '';
+        if (this.props.searchResult.length > 0) {
+            dialogContent = <SearchResults searchResult={this.props.searchResult}/>
+        } else {
+            dialogContent = <SearchInput onSearch={this.props.onSearch}/>;
+        }
 
         return (
             <Dialog
               title="Add New Movie or TV Show"
-              actions={actions}
               modal={false}
               open={this.props.modalOpen}
               onRequestClose={this.props.onToggleModal}
+              autoScrollBodyContent={true}
               bodyStyle={{
-                  backgroundColor:red900
+                  backgroundColor:red900,
+                  height:'200px'
               }}
               actionsContainerStyle={{
                   backgroundColor:red900
@@ -71,7 +37,7 @@ export default class AddNewModal extends Component {
                   color:'white'
               }}
             >
-                {searchBox}
+                {dialogContent}
             </Dialog>
         );
     }

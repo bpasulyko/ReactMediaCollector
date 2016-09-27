@@ -8,22 +8,35 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import NavBar from '../components/NavBar';
 import AddNewModal from '../components/AddNewModal';
+import axios from 'axios';
+
+const API_KEY = 'c61fe26ad89f613231e56e67cff3779d';
+const BASE_URL = 'https://api.themoviedb.org/3';
 
 export default class App extends Component {
     constructor() {
         super();
         this.state = {
             modalOpen:false,
-            title:''
+            searchResult: '',
         }
     }
 
     toggleModal = () => {
-        this.setState({ modalOpen: !this.state.modalOpen })
+        this.setState({
+            modalOpen: !this.state.modalOpen,
+            searchResult:''
+        });
     }
 
-    submitModal = (title) => {
-        this.setState({ title:title, modalOpen:false })
+    search = (title) => {
+        axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${title}`)
+            .then((result) => {
+                this.setState({ searchResult:result.data.results });
+            })
+            .catch((error) => {
+
+            });
     }
 
     render() {
@@ -32,11 +45,11 @@ export default class App extends Component {
                 <div>
                     <NavBar addButtonClick={this.toggleModal} />
                     <AddNewModal
+                        searchResult={this.state.searchResult}
                         modalOpen={this.state.modalOpen}
                         onToggleModal={this.toggleModal}
-                        onSubmitModal={this.submitModal}
+                        onSearch={this.search}
                     />
-                    <h1>{this.state.title}</h1>
                 </div>
             </MuiThemeProvider>
         );
