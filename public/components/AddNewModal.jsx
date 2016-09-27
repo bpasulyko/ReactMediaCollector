@@ -17,10 +17,11 @@ export default class AddNewModal extends Component {
         } else {
             dialogContent = <SearchInput onSearch={this.props.onSearch}/>;
         }
+        var title = (this.props.type === 'movie') ? 'Add a Movie' : 'Add a TV Show';
 
         return (
             <Dialog
-              title="Add New Movie or TV Show"
+              title={title}
               modal={false}
               open={this.props.modalOpen}
               onRequestClose={this.props.onToggleModal}

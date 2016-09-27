@@ -22,15 +22,16 @@ export default class App extends Component {
         }
     }
 
-    toggleModal = () => {
+    toggleModal = (type) => {
         this.setState({
             modalOpen: !this.state.modalOpen,
-            searchResult:''
+            searchResult:'',
+            type: (type) ? type.toLowerCase() : '',
         });
     }
 
     search = (title) => {
-        axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${title}`)
+        axios.get(`${BASE_URL}/search/${this.state.type}?api_key=${API_KEY}&language=en-US&query=${title}`)
             .then((result) => {
                 this.setState({ searchResult:result.data.results });
             })
@@ -49,6 +50,7 @@ export default class App extends Component {
                         modalOpen={this.state.modalOpen}
                         onToggleModal={this.toggleModal}
                         onSearch={this.search}
+                        type={this.state.type}
                     />
                 </div>
             </MuiThemeProvider>

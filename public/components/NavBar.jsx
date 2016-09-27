@@ -4,6 +4,12 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import {red900} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import HomeIcon from 'material-ui/svg-icons/action/home';
+import AddIcon from 'material-ui/svg-icons/av/library-add';
+import MovieIcon from 'material-ui/svg-icons/av/movie';
+import TvIcon from 'material-ui/svg-icons/hardware/tv';
+import AddNewMenu from './AddNewMenu';
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -16,29 +22,33 @@ export default class NavBar extends Component {
     handleClose = () => this.setState({open: false});
 
     render() {
-        var addButton = <FlatButton
-            label="Add"
-            onClick={this.props.addButtonClick}
-        />
         var appBar = <AppBar
             title="Media Collector"
             onLeftIconButtonTouchTap={this.handleToggle}
-            iconElementRight={addButton}
+            iconElementRight={
+                <AddNewMenu onItemClick={this.props.addButtonClick} />
+            }
             style={{
                 backgroundColor: red900
             }}
-            titleStyle={{
-                width:'150px'
-            }}
         />;
 
+        var itemIcons = [
+            <HomeIcon color='white' />,
+            <MovieIcon color='white' />,
+            <TvIcon color='white' />
+        ] ;
         var itemComponents = ['Home', 'Movies', 'TV Shows'].map((item, index) =>
             <MenuItem
                 key={index}
                 style={{
                     color:'white'
                 }}
-                onTouchTap={this.handleClose}>{item}</MenuItem>
+                onTouchTap={this.handleClose}
+                leftIcon={itemIcons[index]}
+            >
+                {item}
+            </MenuItem>
         )
 
         var drawer = <Drawer
