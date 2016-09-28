@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import HomeIcon from 'material-ui/svg-icons/action/home';
-import AddIcon from 'material-ui/svg-icons/av/library-add';
+import AddIcon from 'material-ui/svg-icons/content/add';
 import MovieIcon from 'material-ui/svg-icons/av/movie';
 import TvIcon from 'material-ui/svg-icons/hardware/tv';
 import {red900} from 'material-ui/styles/colors';

@@ -3,25 +3,40 @@ import Dialog from 'material-ui/Dialog';
 import {red900, red600} from 'material-ui/styles/colors';
 import SearchInput from './SearchInput';
 import SearchResults from './SearchResults';
+import FlatButton from 'material-ui/FlatButton';
+import BackButton from 'material-ui/svg-icons/content/backspace';
 
 export default class AddNewModal extends Component {
     constructor(props) {
         super(props);
-        this.state = { title: '' }
+    }
+
+    clearSearchResults = () => {
+        this.props.onClearSearchResults();
     }
 
     render() {
         var dialogContent = '';
         if (this.props.searchResult.length > 0) {
-            dialogContent = <SearchResults searchResult={this.props.searchResult}/>
+            dialogContent = (
+                <div>
+                    <FlatButton
+                        backgroundColor={red900}
+                        icon={<BackButton color='white' />}
+                        onTouchTap={this.clearSearchResults}
+                    />
+                    <SearchResults
+                        searchResult={this.props.searchResult}
+                        onListItemClick={this.props.onSearchResultItemClick}
+                    />
+                </div>
+            )
         } else {
             dialogContent = <SearchInput onSearch={this.props.onSearch}/>;
         }
-        var title = (this.props.type === 'movie') ? 'Add a Movie' : 'Add a TV Show';
 
         return (
             <Dialog
-              title={title}
               modal={false}
               open={this.props.modalOpen}
               onRequestClose={this.props.onToggleModal}

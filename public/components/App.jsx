@@ -40,6 +40,20 @@ export default class App extends Component {
             });
     }
 
+    onSearchResultItemClick = (id) => {
+        axios.get(`${BASE_URL}/${this.state.type}/${id}?api_key=${API_KEY}&language=en-US`)
+            .then((result) => {
+
+            })
+            .catch((error) => {
+
+            });
+    }
+
+    onClearSearchResults = () => {
+        this.setState({ searchResult:'' });
+    }
+
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
@@ -47,6 +61,8 @@ export default class App extends Component {
                     <NavBar addButtonClick={this.toggleModal} />
                     <AddNewModal
                         searchResult={this.state.searchResult}
+                        onSearchResultItemClick={this.onSearchResultItemClick}
+                        onClearSearchResults={this.onClearSearchResults}
                         modalOpen={this.state.modalOpen}
                         onToggleModal={this.toggleModal}
                         onSearch={this.search}

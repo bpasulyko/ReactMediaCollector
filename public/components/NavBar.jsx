@@ -6,7 +6,6 @@ import FlatButton from 'material-ui/FlatButton';
 import {red900} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import HomeIcon from 'material-ui/svg-icons/action/home';
-import AddIcon from 'material-ui/svg-icons/av/library-add';
 import MovieIcon from 'material-ui/svg-icons/av/movie';
 import TvIcon from 'material-ui/svg-icons/hardware/tv';
 import AddNewMenu from './AddNewMenu';
