@@ -30,6 +30,7 @@ export default class AddNewModal extends Component {
                     data={this.props.selectedResult}
                     onSave={this.props.onSave}
                     onClearSearchResults={this.props.onClearSearchResults}
+                    type={this.props.type}
                 />
             );
         } else if (this.props.searchResult.length > 0) {
@@ -47,6 +48,7 @@ export default class AddNewModal extends Component {
                     <SearchResults
                         searchResult={this.props.searchResult}
                         onListItemClick={this.props.onSearchResultItemClick}
+                        type={this.props.type}
                     />
                 </div>
             )

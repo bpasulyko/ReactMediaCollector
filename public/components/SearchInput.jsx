@@ -3,7 +3,7 @@ import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 import Search from 'material-ui/svg-icons/action/search';
 import RaisedButton from 'material-ui/RaisedButton';
-import {red900, red600} from 'material-ui/styles/colors';
+import {red900, red700} from 'material-ui/styles/colors';
 
 export default class SearchInput extends Component {
     search = () => {
@@ -28,14 +28,14 @@ export default class SearchInput extends Component {
                     ref={c => this.textfield = c}
                 />
                 <RaisedButton
-                  backgroundColor={red600}
-                  icon={<Search color='white' />}
-                  label='Search'
-                  style={{
+                    backgroundColor={red700}
+                    icon={<Search color='white' />}
+                    label='Search'
+                    style={{
                       float:'right'
-                  }}
-                  labelColor='white'
-                  onTouchTap={this.search}
+                    }}
+                    labelColor='white'
+                    onTouchTap={this.search}
                 />
             </div>
         );

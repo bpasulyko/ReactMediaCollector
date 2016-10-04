@@ -21,13 +21,16 @@ export default class ItemDetailView extends Component {
         var size = this.props.imageConfig.poster_sizes[4];
         var path = data.poster_path;
         var imageUrl = `${baseUrl}${size}${path}`;
+        var title = (this.props.type === 'movie')
+            ? `${data.title} (${data.release_date.split('-')[0]})`
+            : `${data.name} (${data.first_air_date.split('-')[0]})`;
         return (
             <div className='content-container'>
                 <div className='image-container'>
                     <img src={imageUrl} />
                 </div>
                 <div className='details-container'>
-                    <h2>{data.title} ({data.release_date.split('-')[0]})</h2>
+                    <h2>{title}</h2>
                     <span>{data.overview}</span>
                 </div>
                 <div className='button-container'>

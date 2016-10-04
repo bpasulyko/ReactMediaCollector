@@ -71,7 +71,7 @@ export default class App extends Component {
     }
 
     saveItem = (id) => {
-        console.log('saved' + id);
+        console.log('saved ' + id + ' ' + this.state.type);
         this.setState({
             modalOpen: !this.state.modalOpen,
             searchResult:[],
