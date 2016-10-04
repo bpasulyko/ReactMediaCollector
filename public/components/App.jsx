@@ -18,14 +18,27 @@ export default class App extends Component {
         super();
         this.state = {
             modalOpen:false,
-            searchResult: '',
+            searchResult: [],
+            selectedResult: null,
+            type:null,
         }
+    }
+
+    componentWillMount() {
+        axios.get(`${BASE_URL}/configuration?api_key=${API_KEY}`)
+            .then((result) => {
+                this.setState({ imageConfig:result.data.images });
+            })
+            .catch((error) => {
+
+            });
     }
 
     toggleModal = (type) => {
         this.setState({
             modalOpen: !this.state.modalOpen,
-            searchResult:'',
+            searchResult:[],
+            selectedResult: null,
             type: (type) ? type.toLowerCase() : '',
         });
     }
@@ -43,7 +56,7 @@ export default class App extends Component {
     onSearchResultItemClick = (id) => {
         axios.get(`${BASE_URL}/${this.state.type}/${id}?api_key=${API_KEY}&language=en-US`)
             .then((result) => {
-
+                this.setState({ selectedResult:result.data });
             })
             .catch((error) => {
 
@@ -51,7 +64,20 @@ export default class App extends Component {
     }
 
     onClearSearchResults = () => {
-        this.setState({ searchResult:'' });
+        this.setState({
+            searchResult:[],
+            selectedResult: null,
+        });
+    }
+
+    saveItem = (id) => {
+        console.log('saved' + id);
+        this.setState({
+            modalOpen: !this.state.modalOpen,
+            searchResult:[],
+            selectedResult: null,
+            type: null,
+        });
     }
 
     render() {
@@ -67,6 +93,9 @@ export default class App extends Component {
                         onToggleModal={this.toggleModal}
                         onSearch={this.search}
                         type={this.state.type}
+                        imageConfig={this.state.imageConfig}
+                        selectedResult={this.state.selectedResult}
+                        onSave={this.saveItem}
                     />
                 </div>
             </MuiThemeProvider>

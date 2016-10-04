@@ -4,3 +4,35 @@ body {
     background:#212121;
     font-family: 'Roboto', sans-serif;
 }
+
+.content-container {
+    padding-top:10px;
+    width:100%;
+    position:relative;
+
+    .image-container {
+        position:relative;
+        display:inline-block;
+        width:20%;
+
+        img {
+            border-radius:5px;
+            width:100%;
+            position:relative;
+            box-shadow:0 0 10px 2px black;
+        }
+    }
+
+    .details-container {
+        display: inline-block;
+        color: white;
+        position: absolute;
+        width: 79%;
+        top: 0;
+        padding-left: 15px;
+    }
+
+    .button-container {
+        text-align:right;
+    }
+}
