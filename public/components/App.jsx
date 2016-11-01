@@ -17,6 +17,7 @@ export default class App extends Component {
     constructor() {
         super();
         this.state = {
+            sessionId: this.props.sessionId,
             modalOpen:false,
             searchResult: [],
             selectedResult: null,
