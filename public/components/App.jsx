@@ -14,8 +14,8 @@ const API_KEY = 'c61fe26ad89f613231e56e67cff3779d';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 export default class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             sessionId: this.props.sessionId,
             modalOpen:false,
